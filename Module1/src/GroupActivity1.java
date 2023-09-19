@@ -7,11 +7,6 @@ public class GroupActivity1 {
         int end = len-start-textLength;
         String centeredText = "";
 
-        if (len % 2 != 0 && textLength % 2 == 0){
-            start += 1;
-            end -= 1;
-        }
-
         for (int i = 0; i < start; i++){
             centeredText += " ";
         }
