@@ -50,12 +50,19 @@ public class Item2 {
                         stack.pop();
                     }
                     postfixStack.push(stack.peek()); // if character not a closing parenthesis, push to postfixStack
+                    System.out.println(postfixStack.peek());
                     stack.pop(); // pop the element from stack
                 }
                 else{
                     postfixStack.push(infix.charAt(i)); // if character is neither a parenthesis or operator, push to postfixStack
+                    System.out.println(postfixStack.peek());
                 }
             }
+        }
+
+        if (!stack.empty() && operator.contains(stack.peek())){
+            postfixStack.push(stack.peek());
+            stack.pop();
         }
 
         while (!postfixStack.isEmpty()){ // converts postfixStack to string; in reverse though because it's a stack
