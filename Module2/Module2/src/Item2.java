@@ -50,19 +50,28 @@ public class Item2 {
                         stack.pop();
                     }
                     postfixStack.push(stack.peek()); // if character not a closing parenthesis, push to postfixStack
-                    System.out.println(postfixStack.peek());
+                    //System.out.println(postfixStack.peek());
                     stack.pop(); // pop the element from stack
                 }
                 else{
                     postfixStack.push(infix.charAt(i)); // if character is neither a parenthesis or operator, push to postfixStack
-                    System.out.println(postfixStack.peek());
+                    //System.out.println(postfixStack.peek());
                 }
             }
         }
 
-        if (!stack.empty() && operator.contains(stack.peek())){
-            postfixStack.push(stack.peek());
-            stack.pop();
+        while (!stack.empty()){
+            if (operator.contains(stack.peek())){ // top of stack is operator
+                postfixStack.push(stack.peek());
+                //System.out.println(postfixStack.peek());
+                stack.pop();
+            }
+            else if (stack.peek() == '('){ // top of stack is parenthesis
+                stack.pop();
+            }
+            else{ // top of stack is operand
+                postfixStack.push(stack.peek());
+            }
         }
 
         while (!postfixStack.isEmpty()){ // converts postfixStack to string; in reverse though because it's a stack
@@ -104,6 +113,8 @@ public class Item2 {
         String postfix = infixToPostfix(infix, postfixStack, stack, operator);
         String prefix = infixToPrefix(infix, prefixStack, stack, operator);
 
-        System.out.print("Postfix: " + postfix + "\nPrefix: " + prefix);
+        /* System.out.print("Postfix: " + postfix + "\nPrefix: " + prefix); */
+        System.out.print("Postfix: " + postfix);
+        System.out.print("\nPrefix: " + prefix);
     }
 }
