@@ -1,6 +1,9 @@
 // Starter Class: MyStack.java 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyStack implements StackInterface { 
-    private static char arr[] = new char[50]; // max is 50 characters
+    private static char stack[] = new char[50]; // max is 50 characters
     private static int top;
 
     @Override
@@ -10,8 +13,8 @@ public class MyStack implements StackInterface {
             System.out.println("Stack Overflow");
             System.exit(1);
         }
-        System.out.println("Inserting " + j);
-        arr[++top] = (char) j;
+        //System.out.println("Inserting " + j);
+        stack[++top] = (char) j;
     }
     @Override
     public void pop() throws StackEmptyException {
@@ -20,21 +23,31 @@ public class MyStack implements StackInterface {
             System.out.println("Stack Underflow");
             System.exit(1);
         }
-        System.out.println("Removing " + arr[top]);
+        //System.out.println("Removing " + stack[top]);
         top--;
     }
     @Override
-    public Object top() throws StackEmptyException {
+    public Character top() throws StackEmptyException {
         //TODO: write your implementation
-        return arr[top];
+        return stack[top];
     }
     @Override public boolean isEmpty() {
         //TODO: write your implementation
-        return false;
+        if (top >= 1){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
     @Override public boolean isFull() {
         //TODO: write your implementation
-        return false;
+        if (top == 50){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     @Override
     public int size() {
@@ -43,23 +56,22 @@ public class MyStack implements StackInterface {
     }
 
     public static void displayStack(){
-        for (int i = 0; i < arr.length; i++){
-            System.out.print(arr[i]);
+        for (int i = 1; i <= top; i++){
+            System.out.print(stack[i]);
         }
     }
 
     public static void main(String[] args) {
         String infix = "A+B*C";
         MyStack arr = new MyStack();
-        arr.push(infix.charAt(0));
-        System.out.println("Top of stack: " + arr.top());
-        arr.push(infix.charAt(1));
-        System.out.println("Top of stack: " + arr.top());
-        arr.push(infix.charAt(2));
-        System.out.println("Top of stack: " + arr.top());
+        System.out.println("Top of Stack: " + arr.top() + " | top = " + top); // TOS is null, top = 0
+        for (int i = 0; i < infix.length(); i++){
+            arr.push(infix.charAt(i));
+            System.out.println("Top of Stack: " + arr.top() + " | top = " + top);
+        }
         arr.pop();
-        System.out.println("Top of stack: " + arr.top());
-        System.out.println("Stack size: " + arr.size());
+        System.out.println("Top of Stack: " + arr.top() + " | top = " + top);
+        System.out.println("Stack size: " + arr.size() + "\nStack: ");
         displayStack();
     }
 }
