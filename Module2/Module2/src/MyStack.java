@@ -62,14 +62,16 @@ public class MyStack implements StackInterface {
     }
 
     public static void main(String[] args) {
+        char[] operators = new char[]{'∧','∨','↑','↓','→','¬','⇔','⊻'};
+
         String infix = "A+B*C";
         MyStack arr = new MyStack();
         System.out.println("Top of Stack: " + arr.top() + " | top = " + top); // TOS is null, top = 0
-        for (int i = 0; i < infix.length(); i++){
+        for (int i = 0; i < infix.length(); i++){ // pushes infix expression into stack
             arr.push(infix.charAt(i));
             System.out.println("Top of Stack: " + arr.top() + " | top = " + top);
         }
-        arr.pop();
+        arr.pop(); // pops infix expression out of stack
         System.out.println("Top of Stack: " + arr.top() + " | top = " + top);
         System.out.println("Stack size: " + arr.size() + "\nStack: ");
         displayStack();
